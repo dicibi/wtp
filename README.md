@@ -1,30 +1,39 @@
-# server ytdl
+# README
 
-# getting started 
+getting started
 
-if you neef help to get started
+setup environment deno in vscode
+<https://stackoverflow.com/questions/65115527/how-can-i-avoid-the-an-import-path-cannot-end-with-ts-extension-error-in-vsco>
 
-activate virtual environment:
-
-```bash
-python -m venv venv
-source venv/bin/activate
-```
-
-install all dependecies:
+install denon to watch change of deno
+<https://github.com/denosaurs/denon>
 
 ```bash
-pip install -r requirements.txt
+denon run --allow-net --allow-run --allow-write  main.ts
 ```
 
-running:
+## run with doceker
+
+build docker image
 
 ```bash
-flask run
+docker build -t app .
 ```
 
-example how to use:
+run docker
 
-``` bash
-  curl -d 'key=ainqwcnqwcoqjncqiujcnq&q="https://www.youtube.com/watch?v=3Lg2ijbghR8"' https://ytdl-7wabejrcqq-uc.a.run.app/youtube
+```bash
+docker run -e TINI_SUBREAPER=true -it --init -p 8000:8000 app
+```
+
+## run with docker compose
+
+```bash
+docker compose up --build -d
+```
+
+alternative run docker compose if there's a error
+
+```bash
+docker compose down --remove-orphans && docker compose up --build
 ```
