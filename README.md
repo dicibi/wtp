@@ -9,7 +9,7 @@ install denon to watch change of deno
 <https://github.com/denosaurs/denon>
 
 ```bash
-denon run --allow-net --allow-run --allow-write  main.ts
+denon run --allow-net --allow-run --allow-write --allow-env --allow-read  index.ts
 ```
 
 ## run with doceker
@@ -36,4 +36,24 @@ alternative run docker compose if there's a error
 
 ```bash
 docker compose down --remove-orphans && docker compose up --build
+```
+
+## run application
+
+show home
+
+```bash
+curl localhost:8000
+```
+
+convert html to pdf
+
+```bash
+curl -d "link=<url>" localhost:8000/convertpdf
+```
+
+download result pdf
+
+```bash
+curl localhost:8000/download/<req_id>.pdf
 ```

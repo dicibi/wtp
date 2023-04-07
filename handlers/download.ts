@@ -1,12 +1,20 @@
-import { Response } from "https://deno.land/x/oak@v12.1.0/mod.ts";
+import { RouterContext, State } from "https://deno.land/x/oak@v12.1.0/mod.ts";
+import { existsSync } from "https://deno.land/std@0.182.0/fs/mod.ts";
 
-export default (ctx: { response: Response }) => {
-  ctx.response.body = `<!DOCTYPE html>
-  <html>
-    <head><title>Hello oak!</title><head>
-    <body>
-      <h1>HI mom!</h1>
-    </body>
-  </html>
-`;
+export default async (
+  ctx: RouterContext<
+    "/download/:path",
+    {
+      path: string;
+    } & Record<string | number, string | undefined>,
+    State
+  >
+) => {
+  try {
+    const root = `${Deno.cwd()}`;
+    return await ctx.send({ root });
+  } catch (e) {
+    console.log(e);
+    return (ctx.response.body = "error download pdf");
+  }
 };

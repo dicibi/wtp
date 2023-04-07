@@ -1,8 +1,9 @@
+import { APP_CHROME } from "../config.ts";
 export async function downloadPdf(name: string, url: string) {
-  const CHROME = "google-chrome-stable"; //"./latest/chrome"
   const convertPdf = [
-    CHROME,
+    APP_CHROME,
     "--headless",
+    "--disable-gpu",
     "--no-sandbox",
     `--print-to-pdf=./download/${name}.pdf`,
     "--print-paper-size=Letter",
@@ -13,10 +14,14 @@ export async function downloadPdf(name: string, url: string) {
     "--margin-bottom=0",
     url,
   ];
-  const p2 = Deno.run({ cmd: convertPdf });
+
+  const p2 = Deno.run({ cmd: convertPdf, stderr: "piped" });
   const { code } = await p2.status();
+
   if (code === 0) {
-    p2.close();
+    console.log({ output: name, link: url.toString(), status: "success" });
+    return { output: name, link: url.toString(), status: "success" };
+  } else {
+    return { output: name, link: url.toString(), status: "fail" };
   }
-  return { output: name, link: url, status: "success" };
 }

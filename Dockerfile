@@ -20,14 +20,16 @@ RUN apt-get update -qqy \
   && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
 # create user deno
-RUN chown deno .
-USER deno
 RUN mkdir download
+
+# RUN chown deno download
+# USER deno
 
 COPY . .
 
-# These steps will be re-run upon each file change in your working directory:
-# Compile the main app so that it doesn't need to be compiled each startup/entry.
-RUN deno cache main.ts
+ENV APP_HOST "0.0.0.0"
+ENV APP_CHROME "./latest/chrome"
 
-CMD ["deno","run", "--allow-net", "--allow-run", "--allow-write", "index.ts"]
+RUN deno cache index.ts
+
+CMD ["deno","run", "-A", "index.ts"]
