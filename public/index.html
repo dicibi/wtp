@@ -1,13 +1,46 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>convert pdf</title>
+    <!-- place custom.css first so it didnt conflict with any css library -->
+    <link rel="stylesheet" href="/public/custom.css" />
     <link rel="stylesheet" href="/public/bootstrap.min.css" type="text/css" />
     <script src="/public/bootstrap.bundle.min.js"></script>
+    <script src="/public/alpine.min.js"></script>
   </head>
   <body>
-    <div class="container-fluid">hi mom</div>
+    <div class="container-fluid">
+      <!-- input form -->
+      <main class="w-100 m-auto max-w-[300px] pt-[24px] text-center">
+        <p class="text-xl">convert html to pdf</p>
+        <div class="mt-4">
+          <form action="" x-data="{ url: '' }">
+            <div class="form-floating mt-4">
+              <input
+                x-model="url"
+                type="url"
+                class="form-control"
+                id="url"
+                placeholder="https://google.com"
+              />
+              <label for="url" class="form-label">Url website</label>
+            </div>
+            <p x-text="$refs.url.text"></p>
+            <button
+              type="button"
+              class="btn btn-primary w-100 mt-2"
+              :class="{'btn-secondary':url.trim() === ''}"
+              x-if="$refs.url."
+              :disabled="url.trim() === ''"
+            >
+              Convert html
+            </button>
+          </form>
+        </div>
+      </main>
+    </div>
   </body>
 </html>
