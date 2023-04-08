@@ -1,5 +1,25 @@
 # README
 
+## run application
+
+show home
+
+```bash
+curl localhost:8000
+```
+
+convert html to pdf
+
+```bash
+curl -d "link=<url>" localhost:8000/convertpdf
+```
+
+download result pdf
+
+```bash
+curl localhost:8000/download/<req_id>.pdf
+```
+
 getting started
 
 setup environment deno in vscode
@@ -36,24 +56,4 @@ alternative run docker compose if there's a error
 
 ```bash
 docker compose down --remove-orphans && docker compose up --build
-```
-
-## run application
-
-show home
-
-```bash
-curl localhost:8000
-```
-
-convert html to pdf
-
-```bash
-curl -d "link=<url>" localhost:8000/convertpdf
-```
-
-download result pdf
-
-```bash
-curl localhost:8000/download/<req_id>.pdf
 ```
