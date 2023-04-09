@@ -36,7 +36,7 @@ install denon to watch change of deno
 denon run --allow-net --allow-run --allow-write --allow-env --allow-read  index.ts
 ```
 
-## run with doceker
+## run with docker
 
 build docker image
 
