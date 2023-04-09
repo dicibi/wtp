@@ -6,27 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>convert pdf</title>
     <!-- place custom.css first so it didnt conflict with any css library -->
-    <link rel="stylesheet" href="/public/custom.css" />
+    <link rel="stylesheet" href="/public/tailwind.css" />
     <link rel="stylesheet" href="/public/bootstrap.min.css" type="text/css" />
     <script src="/public/bootstrap.bundle.min.js"></script>
     <script src="/public/alpine.min.js"></script>
   </head>
-  <body>
+  <body
+    class=""
+    x-data="{darkmode: true}"
+    :class="{'bg-dark text-white':darkmode}"
+  >
     <div class="container-fluid">
-      <!-- input form -->
+      <!-- main area -->
       <main class="w-100 m-auto max-w-[300px] pt-[24px] text-center">
         <p class="text-xl">convert html to pdf</p>
         <div class="mt-4">
+          <!-- input form -->
           <form action="" x-data="{ url: '' }">
-            <div class="form-floating mt-4">
+            <div
+              class="form-floating mt-4 border-0 !border-none"
+              x-bind:class="{'!bg-slate-600': darkmode}"
+            >
               <input
                 x-model="url"
                 type="url"
-                class="form-control"
+                class="form-control !bg-inherit !border-inherit"
                 id="url"
                 placeholder="https://google.com"
               />
-              <label for="url" class="form-label">Url website</label>
+              <label
+                for="url"
+                class="form-label"
+                :class="{'text-slate hover:!relative':darkmode}"
+                >Url website</label
+              >
             </div>
             <p x-text="$refs.url.text"></p>
             <button
@@ -41,6 +54,21 @@
           </form>
         </div>
       </main>
+      <!-- switch button dark mode -->
+      <div class="form-check form-switch absolute top-4 right-4">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="toggle-switch"
+          x-on:click="darkmode = !darkmode"
+        />
+        <label
+          class="form-check-label"
+          for="toggle-switch"
+          x-text="darkmode ? 'dark' : 'light'"
+        ></label>
+      </div>
+      <!-- <button>button</button> -->
     </div>
   </body>
 </html>

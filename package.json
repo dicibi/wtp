@@ -1,0 +1,22 @@
+{
+  "name": "convertpdf2",
+  "version": "1.0.0",
+  "description": "## run application",
+  "main": "index.js",
+  "scripts": {
+    "tailwind": "tailwindcss -i ./public/input.css -o ./public/tailwind.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nursyah21/api_convertpdf.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nursyah21/api_convertpdf/issues"
+  },
+  "homepage": "https://github.com/nursyah21/api_convertpdf#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.3.1"
+  }
+}
