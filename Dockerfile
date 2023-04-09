@@ -28,6 +28,7 @@ RUN mkdir download
 COPY . .
 
 ENV APP_HOST "0.0.0.0"
+ENV APP_PORT "8000"
 ENV APP_CHROME "./latest/chrome"
 
 RUN deno cache index.ts
