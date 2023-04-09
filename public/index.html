@@ -8,14 +8,21 @@
     <!-- place custom.css first so it didnt conflict with any css library -->
     <link rel="stylesheet" href="/public/tailwind.css" />
     <link rel="stylesheet" href="/public/halfmoon.min.css" type="text/css" />
+    <link rel="shortcut icon" href="#" type="image/x-icon">
+    <!-- alpine -->
+    <script defer src="/public/alpine.min.js"></script>
+    
     <script src="/public/halfmoon.min.js"></script>
-    <script src="/public/alpine.min.js"></script>
-
+    
     <!-- ionic icons -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    
+    <!-- jquery -->
+    <!-- <script src="/public/jquery-3.6.4.min.js"></script> -->
+    <script src="/public/custom.js"></script>
+    <script src="/public/customDefer.js" defer></script>
 
-    <script src="/public/custom.js" defer></script>
   </head>
   <body>
     
@@ -32,19 +39,29 @@
             </button>
           </div>
 
-          <!-- form input -->
           <div class="flex flex-col items-center">
             <h1 class="text-4xl underline">Convert html to pdf</h1>
-            <form action="/convertpdf" method="post" class="w-400 max-w-full">
+            <!-- form input -->
+            <form x-data="convertpdf()" @submit.prevent="submitUrl" class="w-400 max-w-full">
               <div class="form-group">
                 <label for="link" class="required">link url</label>
-                <input type="text" class="form-control" id="link" placeholder="https://google.com" required="required">
+                <input type="text" class="form-control" id="link" placeholder="https://google.com" required="required" x-model="form.link">
               </div>
               <div class="w-full text-center">
+                <input class="btn w-[200px] mx-auto" type="submit" value="Submit" :disabled="loading">
+              </div>
 
-                <input class="btn w-[80%] mx-auto" type="submit" value="Submit">
+              <!-- result -->
+              <!-- the result must be waiting -->
+              <div class="my-12 text-center italic">
+                <div x-show="success === true">
+                  <a :href="result" x-text="result"></a>
+                </div>
+                <div x-show="success === false" x-text="result"></div>
+              </div>
               </div>
             </form>
+
           </div>
 
         </div>

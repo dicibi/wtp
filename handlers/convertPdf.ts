@@ -1,6 +1,7 @@
 import { Context } from "https://deno.land/x/oak@v12.1.0/mod.ts";
 import { createNameFile } from "../services/createName.ts";
 import { downloadPdf } from "../services/createPdf.ts";
+import { APP_HOST, APP_PROTOCOL, APP_PORT } from "../config.ts";
 
 export default async (ctx: Context) => {
   const body = ctx.request.body();
@@ -22,9 +23,10 @@ export default async (ctx: Context) => {
     console.log("please wait...");
     const name = createNameFile();
     downloadPdf(name, url);
-
+    const base_url = `${APP_PROTOCOL}://${APP_HOST}:${APP_PORT}`
+    const result = `${base_url}/download/${name}.pdf`
     ctx.response.body = {
-      req_id: name,
+      result: result,
     };
   } catch {
     ctx.response.body = `error convert pdf`;
