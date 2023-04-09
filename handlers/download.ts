@@ -1,5 +1,4 @@
 import { RouterContext, State } from "https://deno.land/x/oak@v12.1.0/mod.ts";
-import { existsSync } from "https://deno.land/std@0.182.0/fs/mod.ts";
 
 export default async (
   ctx: RouterContext<

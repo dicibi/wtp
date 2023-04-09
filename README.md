@@ -57,3 +57,11 @@ alternative run docker compose if there's a error
 ```bash
 docker compose down --remove-orphans && docker compose up --build
 ```
+
+## deploy with fly.io
+
+```bash
+curl -L https://fly.io/install.sh | sh
+
+flyctl deploy
+```

@@ -7,6 +7,8 @@ function isValidUrl(url) {
   }
 }
 
+const BASE_URL = window.location.href
+
 // start with darkmode default
 function convertpdf() {
   return {
@@ -29,7 +31,7 @@ function convertpdf() {
         // waiting 1s
         setTimeout(() => {
           try {
-            this.result = JSON.parse(data).result;
+            this.result =  `${BASE_URL}download/${JSON.parse(data).result}`;
             this.success = true;
           } catch {
             this.result = data;
