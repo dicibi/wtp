@@ -2,7 +2,17 @@
 
 ## live demo
 
-<https://lively-leaf-4430.fly.dev/>
+<https://api-convertpdf-cpxehuk7za-et.a.run.app>
+
+## deploy in cloud run
+
+minimal ram to run this app is 1gb under than the app will terminated
+
+steps:
+
+1. build container with cloud build
+2. image will store in container registry
+3. deploy app with cloud run use image from container registry
 
 ## run application
 
@@ -33,39 +43,11 @@ install denon to watch change of deno
 <https://github.com/denosaurs/denon>
 
 ```bash
-denon run --allow-net --allow-run --allow-write --allow-env --allow-read  index.ts
-```
-
-## run with docker
-
-build docker image
-
-```bash
-docker build -t app .
-```
-
-run docker
-
-```bash
-docker run -e TINI_SUBREAPER=true -it --init -p 8000:8000 app
+denon run -A  index.ts
 ```
 
 ## run with docker compose
 
 ```bash
-docker compose up --build -d
-```
-
-alternative run docker compose if there's a error
-
-```bash
-docker compose down --remove-orphans && docker compose up --build
-```
-
-## deploy with fly.io
-
-```bash
-curl -L https://fly.io/install.sh | sh
-
-flyctl deploy
+docker compose down && docker compose up --build -d
 ```

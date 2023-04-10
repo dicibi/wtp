@@ -4,3 +4,13 @@ services:
     build: .
     ports:
       - "8000:8000" #local:container
+
+  # app:
+  #   image: web
+  #   resources:
+  #     limits:
+  #       cpus: '0.50'
+  #       memory: 1024M
+  #     reservations:
+  #       cpus: '0.50'
+  #       memory: 1024M
